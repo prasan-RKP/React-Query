@@ -10,7 +10,10 @@ import ClipLoader from "react-spinners/ClipLoader";
 import Posts from "./Pages/Posts";
 import Profile from "./Pages/Profile";
 import ChatContainer from "./Pages/ChatContainer";
-import TodoList from "./assets/TodoList";
+import SwitchTheme from "./assets/SwitchTheme";
+import Stopwatch from "./assets/Stopwatch";
+import SearchFilter from "./assets/MidLvl/SearchFilter";
+import PasswordStrength from "./assets/MidLvl/PasswordStrength";
 
 const App = () => {
   const { authUser, isCheckingAuth, checkAuth } = useAuthStore();
@@ -22,10 +25,10 @@ const App = () => {
   if (isCheckingAuth && !authUser) {
     return (
       <div className="flex flex-col items-center justify-center h-screen bg-gradient-to-r from-gray-900 to-gray-700">
-        {/* Animated PNG Loader */}
+        
 
         <ClipLoader color="white" size={90} />
-        {/* Typing Effect for Loading Text */}
+        
         <p className="mt-6 text-lg text-white tracking-widest animate-typing overflow-hidden border-r-4 border-white whitespace-nowrap">
           Loading... Please wait
         </p>
@@ -37,7 +40,7 @@ const App = () => {
     <div>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/todo" element={<TodoList />} />
+        <Route path="/todo" element={<PasswordStrength />} />
         <Route
           path="/login"
           element={!authUser ? <Login /> : <Navigate to={"/profile"} replace />}
