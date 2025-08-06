@@ -10,39 +10,48 @@ const PasswordStrength = () => {
 3)how strength (Weak/Medium/Strong) as color (Red/Yellow/Green).
   */
 
-  const [color, setColor] = useState('slate-700');
-  const [text, setText] = useState('');
 
+  // concept:1 -> if you want to match a single char available on string use '.test' for whole value use 'includes
 
-  const onFormValid = (value) => {
+  const [text, setText] = useState("");
+  const [color, setColor] = useState({colr: 'bg-slate-800', txt: 'Da EssenZa'})
 
-    const hasNumber = /\d/.test(value);
-    const hasSpecialChar = /[!@#$%^&*]/.test(value);
+  const colorPallete = (value) => {
+    const numberChars = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    const symbolChars = ["!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "_", "+", "-", "="];
+    const vars = value.split('');
 
-    if ((value.length >= 7) && hasNumber && hasSpecialChar) {
-      setColor('green-500');
+    console.log(vars)
+
+    const hasSpecialChar = vars.some((char)=> symbolChars.includes(char));
+    const hasNums = vars.some((num)=>numberChars.includes(num));
+
+    if(text.length >= 5 && hasNums && hasSpecialChar){
+      setColor({colr:'bg-green-600', txt: 'Strong Password ✅'});
     }
 
-    else if ((value.length >= 7) && (hasNumber || hasSpecialChar)) {
-      setColor('amber-500');
+    else if((text.length >=5)&&(hasNums || hasSpecialChar)){
+      setColor({colr: 'bg-yellow-600', txt: "Mid range Password ☹️"});
     }
 
-    else if (value.length > 7) {
-      setColor('red-300')
+    else if(text.length >= 5){
+      setColor({colr:'bg-orange-800', txt: "Weak Password ❗"});
     }
-    else {
-      setColor('red-600');
+    else{
+      setColor({colr: 'bg-red-500', txt: "Too Weak Password ❌"});
     }
+
   }
-
 
   const handleOnChange = (e) => {
     const value = e.target.value;
     setText(value);
-    onFormValid(value);
+
+    colorPallete(value)
+
   }
 
-  // concept:1 -> if you want to match a single char available on string use '.test' for whole value use 'includes
+
 
 
   return (
@@ -57,13 +66,10 @@ const PasswordStrength = () => {
 
       {/* Status Signals */}
       <div className="w-full max-w-md space-y-4">
-
         <div
-          className={`p-4 rounded-lg bg-${color} text-gray-400 font-medium shadow-md }`}
+          className={`p-4 rounded-lg ${color.colr} text-gray-400 font-medium shadow-md }`}
         >
-          {
-            color === 'green-500' ? "Strong Password ✅" : color === 'amber-500' ? "Medium Range Password" : color === 'red-300' ? "Weak password" : color === 'red-600' ? "Too weak Password" : "Da EssenZa"
-          }
+          {color.txt}
         </div>
 
       </div>

@@ -14,6 +14,8 @@ import SwitchTheme from "./assets/SwitchTheme";
 import Stopwatch from "./assets/Stopwatch";
 import SearchFilter from "./assets/MidLvl/SearchFilter";
 import PasswordStrength from "./assets/MidLvl/PasswordStrength";
+import FormValid from "./assets/FormValid";
+import TodoList from "./assets/TodoList";
 
 const App = () => {
   const { authUser, isCheckingAuth, checkAuth } = useAuthStore();
@@ -40,7 +42,7 @@ const App = () => {
     <div>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/todo" element={<PasswordStrength />} />
+        <Route path="/todo" element={<Stopwatch />} />
         <Route
           path="/login"
           element={!authUser ? <Login /> : <Navigate to={"/profile"} replace />}

@@ -2,21 +2,35 @@ import React, { useRef, useState } from "react";
 
 const Stopwatch = () => {
 
-    const [time, setTime] = useState(4);
-    const [isRunning, setIsRunning] = useState(false);
-    const timeRef = useRef(null);
 
-    const formatTime = (timeinSec) => {
-        const minute = Math.floor(timeinSec / 60); // 4/60 = 0
-        const sec = timeinSec % 60; // 
-        return `${String(minute).padStart(2, "0")}:${String(sec).padStart(2, "0")}`;
-    }
+
+    /*
+    concept: 1 -> a 'ref' will be needed to store the current state of time 
+    concept: 2-> have knowledge of 'setInterval', 'clearInterval' 
+    concept: 3-> a variable to check it is running or not by boolean value.
+
+    */
+
+    const [time, setTime] = useState(0);
+    const timeRef = useRef(null);
+    const [isRunning, setIsRunning] = useState(false);
+
+    const formatTime = (timeInText) => {
+        const minute = Math.floor(timeInText / 60);
+        const sec = timeInText % 60;
+
+        const paddedMin = String(minute).padStart(2, "0");
+        const paddedSec = String(sec).padStart(2, "0");
+
+        return `${paddedMin}:${paddedSec}`;
+    };
 
     const handleStart = () => {
         if (!isRunning) {
+            setIsRunning(true);
             timeRef.current = setInterval(() => {
-               setTime(prev => prev + 1);
-            }, 1000);
+                setTime(prev => prev + 1);
+            }, 1000)
         }
     }
 
@@ -30,13 +44,6 @@ const Stopwatch = () => {
         clearInterval(timeRef.current);
         setTime(0);
     }
-
-    /*
-    concept: 1 -> a 'ref' will be needed to store the current state of time 
-    concept: 2-> have knowledge of 'setInterval', 'clearInterval' 
-    concept: 3-> a variable to check it is running or not by boolean value.
-
-    */
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
