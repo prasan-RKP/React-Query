@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>2nd Largest Number</title>
+  </head>
+  <body>
+    <script>
+      const secondLargestNum = (arr) => {
+        // 2, 4, 1, 6, 3, 9, 21
+        let max = arr[0];
+        let secondMax;
+        for (let i = 0; i < arr.length; i++) {
+          if (arr[i] < arr[i + 1]) {
+            max = arr[i + 1]; // 2, 4
+            secondMax = max;
+          }
+        }
+
+        return secondMax;
+      };
+
+      console.log(
+        secondLargestNum([2, 456454, 4, 1, 6, 3, 9, 21, 889, 234, 123, 12345])
+      );
+    </script>
+  </body>
+</html>

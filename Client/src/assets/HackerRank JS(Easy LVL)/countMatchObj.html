@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Count match objects</title>
+  </head>
+  <body>
+    <script>
+      const orders = [
+        { size: "M", printedSize: "M" }, // ✅ match
+        { size: "L", printedSize: "M" }, // ❌ mismatch
+        { size: "S", printedSize: "S" }, // ✅ match
+        { size: "XL", printedSize: "XL" }, // ✅ match
+        { size: "M", printedSize: "L" }, // ❌ mismatch
+      ];
+
+      let count = 0;
+
+      for (const order of orders) {
+           if(order.size === order.printedSize){
+            count ++;
+           }
+      };
+
+      console.log(count);
+
+      
+    </script>
+  </body>
+</html>

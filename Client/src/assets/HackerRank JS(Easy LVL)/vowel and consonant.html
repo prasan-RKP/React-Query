@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vowels and consonant Printer</title>
+  </head>
+  <body>
+    <script>
+      const VowelAndConsonantPrinter = (str) => {
+        let vowels = ["a", "e", "i", "o", "u"];
+
+        for (let i = 0; i < str.length; i++) {
+          if (vowels.includes(str[i])) {
+            console.log(str[i]);
+          }
+        }
+
+        for (let i = 0; i < str.length; i++) {
+          if (!vowels.includes(str[i])) {
+            console.log(str[i]);
+          }
+        }
+      };
+
+      console.log(VowelAndConsonantPrinter("javascriptloops"));
+    </script>
+  </body>
+</html>
