@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Constructor practice</title>
+  </head>
+  <body>
+    <script>
+      class Badmass {
+        constructor(a, b, c) {
+          this.a = a;
+          this.b = b;
+          this.c = c;
+        }
+
+        getAdd() {
+          return `The addition of 3 digits is ${this.a + this.b + this.c}`;
+        }
+
+        getSubstarct() {
+          return `The Substarction of 3 digits${this.a - this.b - this.c}`;
+        }
+
+        getMultiplication() {
+          return `The multiplication value is ${this.a * this.b * this.c}`;
+        }
+
+        getDivide() {
+          return `The division res ${this.a / this.b / this.c}`;
+        }
+      }
+
+      class subAttachments extends Badmass {
+        constructor(a, b, c, res) {
+          super(a, b, c);
+          this.res = res;
+        }
+
+        getResponse() {
+          return `I am getting response ${this.res} times`;
+        }
+      }
+
+      const bms = new subAttachments(8, 16, 32, 78);
+
+      console.log(bms.getAdd());
+      console.log(bms.getSubstarct());
+      console.log(bms.getMultiplication());
+      console.log(bms.getDivide());
+      console.log(bms.getResponse());
+    </script>
+  </body>
+</html>
