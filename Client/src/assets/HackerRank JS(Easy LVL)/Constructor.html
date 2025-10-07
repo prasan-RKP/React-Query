@@ -39,6 +39,45 @@
         // ... existing code ...
 
        */
+
+      // Question -2
+
+      class jointUs {
+        constructor(l, b) {
+          this.l = l;
+          this.b = b;
+        }
+
+        getArea() {
+          return `The Area of the Square is ${this.l * this.b}`;
+        }
+
+        getPerimeter() {
+          return `The Perimeter of the Square is ${2 * (this.l + this.b)}`;
+        }
+      }
+
+      class wantToJoin extends jointUs {
+        constructor(l, b, str) {
+          super(l, b);
+          this.str = str;
+        }
+
+        getStrValue(){
+          return `I called the Str value is ${this.str}`;
+        }
+      }
+
+
+      const toJoin = new wantToJoin(4, 6, "hello");
+      console.log(toJoin.getArea());
+      console.log(toJoin.getPerimeter());
+      console.log(toJoin.getStrValue());
+    
+      
+
+      
+     
     </script>
   </body>
 </html>

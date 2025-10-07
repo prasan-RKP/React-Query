@@ -16,6 +16,7 @@ import SearchFilter from "./assets/MidLvl/SearchFilter";
 import PasswordStrength from "./assets/MidLvl/PasswordStrength";
 import FormValid from "./assets/FormValid";
 import TodoList from "./assets/TodoList";
+import MyTodoList from "./assets/ReacPracticeQues/MyTodoList";
 
 const App = () => {
   const { authUser, isCheckingAuth, checkAuth } = useAuthStore();
@@ -42,7 +43,7 @@ const App = () => {
     <div>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/todo" element={<Stopwatch />} />
+        <Route path="/todo" element={<MyTodoList />} />
         <Route
           path="/login"
           element={!authUser ? <Login /> : <Navigate to={"/profile"} replace />}
