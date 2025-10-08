@@ -1,5 +1,6 @@
 // myTodoList.jsx
 import React, { useState } from "react";
+import {toast} from 'sonner';
 
 const MyTodoList = () => {
 
@@ -15,6 +16,11 @@ const MyTodoList = () => {
     // Add Todo BTN
 
     const addTodo = () => {
+        if(!inputVal){
+            toast.error("Please Fill you Value..");
+            return false;
+
+        }
         setMyTodos([...todos, { id: Date.now().toString(36).slice(-4), text: inputVal, completed: false }]);
         setInputval('');
     }
