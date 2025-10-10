@@ -12,10 +12,9 @@ const TodoFilter = () => {
     const [toggle, setToggle] = useState(false);
     const [newTodos, setNewTodos] = useState([]);
 
-
     // Add Todo BTN
     const addTodo = () => {
-        if (!inputVal) {
+        if (!inputVal) {     
             toast.error("Please Fill you Value..");
             return false;
         }
@@ -80,6 +79,8 @@ const TodoFilter = () => {
 
             setMyTodos(arr);
         }
+
+        
 
     }
 
