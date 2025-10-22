@@ -17,6 +17,15 @@ import PasswordStrength from "./assets/MidLvl/PasswordStrength";
 import FormValid from "./assets/FormValid";
 import TodoList from "./assets/TodoList";
 import MyTodoList from "./assets/ReacPracticeQues/MyTodoList";
+import SwitchMyTheme from "./assets/ReacPracticeQues/SwitchMyTheme";
+import ControlInput from "./assets/ReacPracticeQues/ControlInput";
+import TodoFilter from "./assets/ReacPracticeQues/TodoFilter";
+import ConditionParent from "./assets/ReacPracticeQues/ConditionParent";
+import FetchAPI from "./assets/ReacPracticeQues/FetchAPI";
+import WeatherUI from "./tailwindPractice/WeatherUI";
+import Root from "./assets/HackerRank/Root";
+import NewWeatherUI from "./tailwindPractice/NewWeatherUI";
+import PassGenrator from "./assets/ReacPracticeQues/PassGenrator";
 
 const App = () => {
   const { authUser, isCheckingAuth, checkAuth } = useAuthStore();
@@ -43,7 +52,7 @@ const App = () => {
     <div>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/todo" element={<MyTodoList />} />
+        <Route path="/todo" element={<PassGenrator />} />
         <Route
           path="/login"
           element={!authUser ? <Login /> : <Navigate to={"/profile"} replace />}
