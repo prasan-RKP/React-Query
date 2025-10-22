@@ -2,61 +2,93 @@ import React, { useState } from "react";
 import { toast } from "sonner";
 
 const FormValid = () => {
+    const [userName, setUserName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    const [email, setEmail] = useState("");
-    const [pass, setPass] = useState("");
+    const formValid = () => {
 
-    const isDisabled = !email.includes('@') || pass.length < 6
-
-    const onFormValid = () => {
-
-        if(!email){
-            toast.error('Plear Enter E-mail');
+        if (!userName) {
+            toast.error('username required');
             return false;
         }
 
-        if(!pass){
-            toast.error("Please Enter Password");
+        else if (userName.length < 5) {
+            toast.error('username must be atleast 6 character');
             return false;
         }
 
-        if (!email.includes('@')) {
-            toast.error('InValid Email');
+        else if (!email) {
+            toast.error('E-mail required');
             return false;
         }
 
-        else if (pass.length < 6) {
-            toast.error("Password must be 6 or more than 6");
+        else if (!emailPattern.test(email)) {
+            toast.error("Please Enter a valid E-mail");
+            return false;
+        }
+
+        else if (!password) {
+            toast.error('Password required');
+            return false;
+        }
+
+        else if (password.length < 5) { // 3 > 5
+            toast.error('password length must be at least 6 character long');
             return false;
         }
 
         return true;
     }
 
-    const handleSubmit = (e) => {
+    const handldeOnSubmit = (e) => {
+
         e.preventDefault();
 
-        if (onFormValid()) {
-            localStorage.setItem('logs', JSON.stringify(email, pass));
-            toast.success('Form submitted succesfully ✅')
+        if (formValid()) {
+            console.log(`username:${userName}, Email:${email}, password:${password}`);
+
+            setEmail('');
+            setUserName('');
+            setPassword('');
         }
+
     }
+
+
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-100">
             <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
                     Login
                 </h2>
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handldeOnSubmit} className="space-y-5">
+
+                    {/* UserName Fiels */}
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">
+                            Username
+                        </label>
+                        <input
+                            type="text"
+                            value={userName}
+                            onChange={(e) => setUserName(e.target.value)}
+                            placeholder="Enter your username"
+                            className=" text-black w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                        />
+
+                    </div>
+
                     {/* Email Field */}
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                             Email
                         </label>
                         <input
+                            type="email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
-                            type="email"
                             placeholder="Enter your email"
                             className=" text-black w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                         />
@@ -69,8 +101,8 @@ const FormValid = () => {
                             Password
                         </label>
                         <input
-                            value={pass}
-                            onChange={(e) => setPass(e.target.value)}
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             type="password"
                             placeholder="Enter your password"
                             className=" text-black w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:outline-none"
@@ -82,8 +114,7 @@ const FormValid = () => {
                     {/* Submit Button */}
                     <button
                         type="submit"
-                        className={`w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-200 ${isDisabled ? "bg-red-600 text-amber-50" : ""}`}
-                        disabled={isDisabled}
+                        className={`w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition duration-200 "bg-red-600 `}
                     >
                         Login
                     </button>
